@@ -16,7 +16,7 @@ class Solution {
             }
 
             if(sum==0){
-                longest = i + 1;
+                longest = Math.max(longest, i + 1);
             }
             else{
                 longest = Math.max(longest, i - map.get(sum));
