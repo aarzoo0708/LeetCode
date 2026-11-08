@@ -9,37 +9,49 @@
  * }
  */
 class Solution {
-    public ListNode reverse(ListNode head){
-        ListNode back = null;
-        ListNode curr = head;
-        ListNode next;
-        while(curr != null){
-            next = curr.next;
-            curr.next = back;
-            back = curr;
-            curr = next;
-        }
-        return back;
-    }
+    // public ListNode reverse(ListNode head){
+    //     ListNode back = null;
+    //     ListNode curr = head;
+    //     ListNode next;
+    //     while(curr != null){
+    //         next = curr.next;
+    //         curr.next = back;
+    //         back = curr;
+    //         curr = next;
+    //     }
+    //     return back;
+    // }
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if(head==null) return null;
-        head = reverse(head);
+        // head = reverse(head);
 
-        if(n==1){
-            head = head.next;
-            return reverse(head);
-        }
+        // if(n==1){
+        //     head = head.next;
+        //     return reverse(head);
+        // }
 
-        ListNode temp = head;
-        int count = 1;
-        while(temp.next != null){
-            if(count==n-1){
-                temp.next = temp.next.next;
-                break;
-            }
-            temp = temp.next;
-            count++;
+        // ListNode temp = head;
+        // int count = 1;
+        // while(temp.next != null){
+        //     if(count==n-1){
+        //         temp.next = temp.next.next;
+        //         break;
+        //     }
+        //     temp = temp.next;
+        //     count++;
+        // }
+        // return reverse(head);
+        ListNode fast = head;
+        ListNode slow = head;
+        for(int i=0; i<n; i++){
+            fast = fast.next;
         }
-        return reverse(head);
+        if(fast==null) return head.next;
+        while(fast.next != null){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return head;
     }
 }
